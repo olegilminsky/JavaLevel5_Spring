@@ -5,8 +5,10 @@ public class Product {
     private String title;
     private Integer cost;
 
-    public Product(Long id, String title, Integer cost) {
-        this.id = id;
+    public Product() {
+    }
+
+    public Product(String title, Integer cost) {
         this.title = title;
         this.cost = cost;
     }

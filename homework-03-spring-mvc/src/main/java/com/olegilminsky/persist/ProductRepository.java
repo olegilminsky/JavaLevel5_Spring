@@ -25,4 +25,19 @@ public class ProductRepository {
         }
         return null;
     }
+
+    public void insert(Product product) {
+        long id = identity.incrementAndGet();
+        product.setId(id);
+        productList.add(product);
+    }
+
+    public void update(Product product) {
+        productList.add(product);
+    }
+
+    public void delete(Product product) {
+        productList.remove(product);
+    }
+
 }
