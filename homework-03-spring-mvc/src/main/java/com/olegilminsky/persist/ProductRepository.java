@@ -5,12 +5,16 @@ import org.springframework.stereotype.Repository;
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Repository
 public class ProductRepository {
 
-    private final List<Product> productList = new ArrayList<>();
+    private Map<Long, Product> productMap = new ConcurrentHashMap<>();
+
+    private List<Product> productList;
 
     private AtomicLong identity = new AtomicLong(0);
 
@@ -24,30 +28,24 @@ public class ProductRepository {
     }
 
     public List<Product> findAll() {
-        return productList;
+        return productList = new ArrayList<>(productMap.values());
     }
 
     public Product findById(long id) {
-        for (Product product : productList) {
-            if (product.getId().equals(id)){
-                return product;
-            }
-        }
-        return null;
+        return productMap.get(id);
     }
 
     public void insert(Product product) {
         long id = identity.incrementAndGet();
         product.setId(id);
-        productList.add(product);
+        productMap.put(id, product);
     }
 
     public void update(Product product) {
-        productList.add(product);
+        productMap.put(product.getId(), product);
     }
 
-    public void delete(Product product) {
-        productList.remove(product);
+    public void delete(long id) {
+        productMap.remove(id);
     }
-
 }

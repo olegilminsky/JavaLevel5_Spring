@@ -26,7 +26,7 @@ public class ProductController {
     }
 
     @GetMapping
-    public String listPage(Model model){
+    public String listPage(Model model) {
         logger.info("Product list page requested");
 
         model.addAttribute("products", productRepository.findAll());
@@ -42,14 +42,20 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public String editProduct(@PathVariable("id") Long id, Model model){
+    public String editProduct(@PathVariable("id") Long id, Model model) {
+        logger.info("Edit product " + id + " page requested");
+        model.addAttribute("product", productRepository.findById(id));
         return "product_form";
     }
 
     @PostMapping
-    public String update(Product product){
+    public String update(Product product) {
         logger.info("Saving product");
-        productRepository.insert(product);
+        if (product.getId() == null) {
+            productRepository.insert(product);
+        } else {
+            productRepository.update(product);
+        }
         return "redirect:/product";
     }
 }
