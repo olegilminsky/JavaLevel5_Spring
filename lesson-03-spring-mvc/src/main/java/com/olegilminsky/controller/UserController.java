@@ -2,16 +2,16 @@ package com.olegilminsky.controller;
 
 import com.olegilminsky.persist.User;
 import com.olegilminsky.persist.UserRepository;
+import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/user")
@@ -45,13 +45,18 @@ public class UserController {
         logger.info("Edit user page requested");
 
         model.addAttribute("user", userRepository.findById(id)
-                .orElseThrow(()-> new NotFoundException("User not found")));
+                .orElseThrow(() -> new NotFoundException("User not found")));
         return "user_form";
     }
 
     @PostMapping
-    public String update(User user) {
+    public String update(@Valid User user, BindingResult result) {
         logger.info("Saving user");
+
+        if (result.hasErrors()){
+            return "user_form";
+        }
+
         userRepository.save(user);
         return "redirect:/user";
     }
@@ -61,6 +66,6 @@ public class UserController {
         ModelAndView modelAndView = new ModelAndView("not_found");
         modelAndView.addObject("message", e.getMessage());
         modelAndView.setStatus(HttpStatus.NOT_FOUND);
-        return  modelAndView;
+        return modelAndView;
     }
 }
