@@ -54,7 +54,7 @@ public class UserController {
     public String update(@Valid User user, BindingResult result) {
         logger.info("Saving user");
 
-        if (result.hasErrors()){
+        if (result.hasErrors()) {
             return "user_form";
         }
 
@@ -62,8 +62,16 @@ public class UserController {
         return "redirect:/user";
     }
 
+    @DeleteMapping("/{id}")
+    public String deleteUser(@PathVariable("id") Long id) {
+        logger.info("Deleting user with id {}", id);
+
+        userRepository.delete(id);
+        return "redirect:/user";
+    }
+
     @ExceptionHandler
-    public ModelAndView NotFoundExceptionHandler(NotFoundException e) {
+    public ModelAndView notFoundExceptionHandler(NotFoundException e) {
         ModelAndView modelAndView = new ModelAndView("not_found");
         modelAndView.addObject("message", e.getMessage());
         modelAndView.setStatus(HttpStatus.NOT_FOUND);
