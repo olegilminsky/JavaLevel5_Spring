@@ -34,23 +34,7 @@
 
 <div class="container">
     <div class="row py-2">
-        <div class="col-12">
-            <form th:action="@{/user}" method="post" th:object="${user}">
-                <input type="hidden" id="id" th:field="*{id}">
-                <div class="form-group">
-                    <label>Username</label>
-                    <input type="text" class="form-control" id="name" th:field="*{username}"
-                           placeholder="Enter username">
-                    <p class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
-                </div>
-                <div class="form-group">
-                    <label>Age</label>
-                    <input type="number" class="form-control" id="age" th:field="*{age}" placeholder="User age">
-                    <p class="text-danger" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></p>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
+        <h2 class="text-danger" th:text="${message}">Error message</h2>
     </div>
 </div>
 
@@ -65,7 +49,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-
 </body>
 
 </html>

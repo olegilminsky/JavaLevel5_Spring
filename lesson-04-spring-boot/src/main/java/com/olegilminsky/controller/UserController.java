@@ -2,7 +2,6 @@ package com.olegilminsky.controller;
 
 import com.olegilminsky.persist.User;
 import com.olegilminsky.persist.UserRepository;
-import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/user")
@@ -53,7 +54,7 @@ public class UserController {
     public String update(@Valid User user, BindingResult result) {
         logger.info("Saving user");
 
-        if (result.hasErrors()){
+        if (result.hasErrors()) {
             return "user_form";
         }
 
@@ -61,8 +62,16 @@ public class UserController {
         return "redirect:/user";
     }
 
+    @DeleteMapping("/{id}")
+    public String deleteUser(@PathVariable("id") Long id) {
+        logger.info("Deleting user with id {}", id);
+
+        userRepository.delete(id);
+        return "redirect:/user";
+    }
+
     @ExceptionHandler
-    public ModelAndView NotFoundExceptionHandler(NotFoundException e) {
+    public ModelAndView notFoundExceptionHandler(NotFoundException e) {
         ModelAndView modelAndView = new ModelAndView("not_found");
         modelAndView.addObject("message", e.getMessage());
         modelAndView.setStatus(HttpStatus.NOT_FOUND);

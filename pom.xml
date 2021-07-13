@@ -18,9 +18,11 @@
     <modules>
         <module>lesson-01-servlet-api</module>
         <module>lesson-02-spring-basics</module>
-        <module>homework-02-spring-basics</module>
         <module>lesson-03-spring-mvc</module>
+        <module>lesson-04-spring-boot</module>
+        <module>homework-02-spring-basics</module>
         <module>homework-03-spring-mvc</module>
         <module>homework-05-hibernate-path-01</module>
+        <module>homework-04-spring-boot</module>
     </modules>
 </project>
