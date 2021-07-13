@@ -4,6 +4,11 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
+@NamedQueries({
+        @NamedQuery(name = "allUsers", query = "select u from User u"),
+        @NamedQuery(name = "userWithAgeBetween", query = "select u from User u where u.age between :min and :max"),
+        @NamedQuery(name = "countUsers", query = "select count(u) from User u")
+})
 public class User {
 
     @Id
