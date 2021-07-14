@@ -23,6 +23,7 @@
         <module>lesson-05-hibernate</module>
         <module>homework-02-spring-basics</module>
         <module>homework-03-spring-mvc</module>
+        <module>homework-05-hibernate-path-01</module>
         <module>homework-04-spring-boot</module>
     </modules>
 </project>
