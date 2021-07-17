@@ -18,5 +18,6 @@
         <property name="hibernate.format_sql">true</property>
 
         <mapping class="com.olegilminsky.entity.User"/>
+        <mapping class="com.olegilminsky.entity.Contact"/>
     </session-factory>
 </hibernate-configuration>
