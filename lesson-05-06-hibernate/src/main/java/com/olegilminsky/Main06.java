@@ -29,5 +29,9 @@ public class Main06 {
         user.getContacts().add(contact3);
 
         em.persist(user);
+
+        em.getTransaction().commit();
+
+        em.close();
     }
 }
