@@ -1,6 +1,8 @@
 package com.olegilminsky.entity;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.List;
 
 
 @Entity
@@ -16,12 +18,15 @@ public class Product {
     private String title;
 
     @Column(nullable = false)
-    private Integer price;
+    private BigDecimal price;
+
+    @OneToMany(mappedBy = "product")
+    private List<LineItem> lineItems;
 
     public Product() {
     }
 
-    public Product(Long id, String title, Integer price) {
+    public Product(Long id, String title, BigDecimal price) {
         this.id = id;
         this.title = title;
         this.price = price;
@@ -43,12 +48,20 @@ public class Product {
         this.title = title;
     }
 
-    public Integer getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public List<LineItem> getLineItems() {
+        return lineItems;
+    }
+
+    public void setLineItems(List<LineItem> lineItems) {
+        this.lineItems = lineItems;
     }
 
     @Override
