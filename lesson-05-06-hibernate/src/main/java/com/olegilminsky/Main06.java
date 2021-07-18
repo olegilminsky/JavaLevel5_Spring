@@ -6,6 +6,7 @@ import org.hibernate.cfg.Configuration;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 
 public class Main06 {
 
@@ -30,7 +31,10 @@ public class Main06 {
 
         // SELECT
 
-        User user = em.find(User.class, 9L);
+//        User user = em.find(User.class, 9L);
+        User user = em.createQuery("select u from User u join fetch u.contacts where u.id = :id", User.class)
+                .setParameter("id", 9L)
+                .getSingleResult();
         System.out.println(user);
         user.getContacts().forEach(System.out::println);
 
