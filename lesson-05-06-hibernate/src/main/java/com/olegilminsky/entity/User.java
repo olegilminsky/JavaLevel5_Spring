@@ -67,6 +67,11 @@ public class User {
         this.contacts = contacts;
     }
 
+    public void addContact(Contact contact) {
+        contact.setUser(this);
+        contacts.add(contact);
+    }
+
     @Override
     public String toString() {
         return "User{" +

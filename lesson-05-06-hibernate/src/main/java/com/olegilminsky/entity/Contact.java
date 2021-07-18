@@ -61,4 +61,14 @@ public class Contact {
     public void setUser(User user) {
         this.user = user;
     }
+
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                ", contact='" + contact + '\'' +
+                ", user=" + user.getUsername() +
+                '}';
+    }
 }
