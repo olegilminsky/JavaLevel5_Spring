@@ -24,6 +24,6 @@
         <module>homework-02-spring-basics</module>
         <module>homework-03-spring-mvc</module>
         <module>homework-04-spring-boot</module>
-        <module>homework-05-hibernate</module>
+        <module>homework-05-06-hibernate</module>
     </modules>
 </project>
