@@ -38,10 +38,10 @@
             <form th:action="@{/product}" method="post" th:object="${product}">
                 <input type="hidden" id="id" th:field="*{id}">
                 <div class="form-group">
-                    <label>Product name</label>
+                    <label>Title</label>
                     <input type="text" class="form-control" id="name" th:field="*{title}" placeholder="Enter product name">
-                    <label>Cost product</label>
-                    <input type="text" class="form-control" id="cost" th:field="*{cost}" placeholder="Enter cost product">
+                    <label>Price</label>
+                    <input type="text" class="form-control" id="price" th:field="*{price}" placeholder="Enter price product">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

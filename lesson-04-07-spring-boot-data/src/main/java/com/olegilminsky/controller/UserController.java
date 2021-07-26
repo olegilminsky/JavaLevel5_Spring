@@ -31,12 +31,15 @@ public class UserController {
 
     @GetMapping
     public String listPage(Model model,
-                           @RequestParam("usernameFilter") Optional<String> usernameFilter) {
+                           @RequestParam("usernameFilter") Optional<String> usernameFilter,
+                           @RequestParam("minAge") Optional<Integer> minAge,
+                           @RequestParam("maxAge") Optional<Integer> maxAge) {
         logger.info("User list page requested");
 
-        List<User> users = usernameFilter
-                .map(userRepository::findByUsernameStartsWith)
-                .orElseGet(userRepository::findAll);
+        List<User> users = userRepository.filterUsers(
+                usernameFilter.orElse(null),
+                minAge.orElse(null),
+                maxAge.orElse(null));
 
         model.addAttribute("users", users);
         return "users";
@@ -52,7 +55,6 @@ public class UserController {
     @GetMapping("/{id}")
     public String editUser(@PathVariable("id") Long id, Model model) {
         logger.info("Edit user page requested");
-
         model.addAttribute("user", userRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("User not found")));
         return "user_form";
