@@ -47,12 +47,12 @@
                 </div>
                 <div class="form-group mb-2 mr-2">
                     <lebel for="minPrice" class="sr-only">Minimal price</lebel>
-                    <input type="text" class="form-control" id="minPrice" th:value="${param.minPrice}"
+                    <input type="number" class="form-control" id="minPrice" th:value="${param.minPrice}"
                            name="minPrice" placeholder="<Minimal price>">
                 </div>
                 <div class="form-group mb-2 mr-2">
                     <lebel for="maxPrice" class="sr-only">Maximal price</lebel>
-                    <input type="text" class="form-control" id="maxPrice" th:value="${param.maxPrice}"
+                    <input type="number" class="form-control" id="maxPrice" th:value="${param.maxPrice}"
                            name="maxPrice" placeholder="<Maximal price>">
                 </div>
                 <button type="submit" class="btn btn-primary mb-2">Apply</button>
