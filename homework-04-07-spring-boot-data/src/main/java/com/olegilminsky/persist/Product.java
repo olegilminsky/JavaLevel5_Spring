@@ -1,16 +1,30 @@
 package com.olegilminsky.persist;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import java.math.BigDecimal;
+
+@Entity
+@Table(name = "products")
 public class Product {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank
+    @Column(length = 512, nullable = false)
     private String title;
-    private Integer cost;
+
+    @Column(nullable = false)
+    private BigDecimal price;
 
     public Product() {
     }
 
-    public Product(String title, Integer cost) {
+    public Product(String title, BigDecimal price) {
         this.title = title;
-        this.cost = cost;
+        this.price = price;
     }
 
     public Long getId() {
@@ -29,11 +43,11 @@ public class Product {
         this.title = title;
     }
 
-    public Integer getCost() {
-        return cost;
+    public BigDecimal getPrice() {
+        return price;
     }
 
-    public void setCost(Integer cost) {
-        this.cost = cost;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 }

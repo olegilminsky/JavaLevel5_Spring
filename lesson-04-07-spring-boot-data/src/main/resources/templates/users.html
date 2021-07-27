@@ -45,6 +45,16 @@
                     <input type="text" class="form-control" id="usernameFilter" th:value="${param.usernameFilter}"
                            name="usernameFilter" placeholder="Username filter">
                 </div>
+                <div class="form-group mb-2 mr-2">
+                    <lebel for="minAge" class="sr-only">Minimal age</lebel>
+                    <input type="number" class="form-control" id="minAge" th:value="${param.minAge}"
+                           name="minAge" placeholder="<Minimal age>">
+                </div>
+                <div class="form-group mb-2 mr-2">
+                    <lebel for="maxAge" class="sr-only">Maximal age</lebel>
+                    <input type="number" class="form-control" id="maxAge" th:value="${param.maxAge}"
+                           name="maxAge" placeholder="<Maximal age>">
+                </div>
                 <button type="submit" class="btn btn-primary mb-2">Apply</button>
             </form>
 
@@ -56,6 +66,7 @@
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Username</th>
+                    <th scope="col">Age</th>
                     <th scope="col">Actions</th>
                 </tr>
                 </thead>
@@ -63,6 +74,7 @@
                 <tr th:each="user : ${users}">
                     <th scope="row" th:text="${user.id}">1</th>
                     <td th:text="${user.username}">Alex</td>
+                    <td th:text="${user.age}">22</td>
                     <td>
                         <a class="btn btn-success" th:href="@{/user/{id}(id = ${user.id})}"><i class="fas fa-edit"></i></a>
                         <form class="d-inline" th:method="delete" th:action="@{/user/{id}(id = ${user.id})}">

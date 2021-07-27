@@ -10,13 +10,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"/>
-    <title>Product Shop application</title>
+    <title>EShop application</title>
 </head>
 
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Product Shop</a>
+    <a class="navbar-brand" href="#">EShop</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,18 +34,7 @@
 
 <div class="container">
     <div class="row py-2">
-        <div class="col-12">
-            <form th:action="@{/product}" method="post" th:object="${product}">
-                <input type="hidden" id="id" th:field="*{id}">
-                <div class="form-group">
-                    <label>Title</label>
-                    <input type="text" class="form-control" id="name" th:field="*{title}" placeholder="Enter product name">
-                    <label>Price</label>
-                    <input type="text" class="form-control" id="price" th:field="*{price}" placeholder="Enter price product">
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
+        <h2 class="text-danger" th:text="${message}">Error message</h2>
     </div>
 </div>
 
@@ -60,5 +49,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-
 </body>
+
+</html>
