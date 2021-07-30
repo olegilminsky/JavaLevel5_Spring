@@ -2,9 +2,11 @@ package com.olegilminsky.controller;
 
 import com.olegilminsky.persist.User;
 import com.olegilminsky.persist.UserRepository;
+import com.olegilminsky.persist.UserSpecifications;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,12 +38,23 @@ public class UserController {
                            @RequestParam("maxAge") Optional<Integer> maxAge) {
         logger.info("User list page requested");
 
-        List<User> users = userRepository.filterUsers(
-                usernameFilter.orElse(null),
-                minAge.orElse(null),
-                maxAge.orElse(null));
+//        List<User> users = userRepository.filterUsers(
+//                usernameFilter.orElse(null),
+//                minAge.orElse(null),
+//                maxAge.orElse(null));
 
-        model.addAttribute("users", users);
+        Specification<User> spec = Specification.where(null);
+        if (usernameFilter.isPresent() && !usernameFilter.get().isBlank()) {
+            spec = spec.and(UserSpecifications.usernamePrefix(usernameFilter.get()));
+        }
+        if (minAge.isPresent()) {
+            spec = spec.and(UserSpecifications.minAge(minAge.get()));
+        }
+        if (maxAge.isPresent()) {
+            spec = spec.and(UserSpecifications.maxAge(maxAge.get()));
+        }
+
+        model.addAttribute("users", userRepository.findAll(spec));
         return "users";
     }
 

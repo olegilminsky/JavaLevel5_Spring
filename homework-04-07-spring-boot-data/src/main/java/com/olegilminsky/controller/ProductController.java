@@ -2,9 +2,11 @@ package com.olegilminsky.controller;
 
 import com.olegilminsky.persist.Product;
 import com.olegilminsky.persist.ProductRepository;
+import com.olegilminsky.persist.ProductSpecifications;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,12 +39,19 @@ public class ProductController {
                            @RequestParam("maxPrice") Optional<BigDecimal> maxPrice) {
         logger.info("Product list page requested");
 
-        List<Product> products = productRepository.filterProducts(
-                productTitleFilter.orElse(null),
-                minPrice.orElse(null),
-                maxPrice.orElse(null));
+        Specification<Product> spec = Specification.where(null);
 
-        model.addAttribute("products", products);
+        if (productTitleFilter.isPresent() && !productTitleFilter.get().isBlank()) {
+            spec = spec.and(ProductSpecifications.titlePrefix(productTitleFilter.get()));
+        }
+        if (minPrice.isPresent()) {
+            spec = spec.and(ProductSpecifications.minPrice(minPrice.get()));
+        }
+        if (maxPrice.isPresent()) {
+            spec = spec.and(ProductSpecifications.maxPrice(maxPrice.get()));
+        }
+
+        model.addAttribute("products", productRepository.findAll(spec));
         return "products";
     }
 
