@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
     public Page<User> findWithFilter(UserListParams userListParams) {
         Specification<User> spec = Specification.where(null);
 
-        if (userListParams.getUsernameFilter() != null && userListParams.getUsernameFilter().isBlank()) {
+        if (userListParams.getUsernameFilter() != null && !userListParams.getUsernameFilter().isBlank()) {
             spec = spec.and(UserSpecifications.usernamePrefix(userListParams.getUsernameFilter()));
         }
         if (userListParams.getMinAge() != null) {

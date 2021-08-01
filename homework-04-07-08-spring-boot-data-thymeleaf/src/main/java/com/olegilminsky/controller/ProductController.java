@@ -6,6 +6,8 @@ import com.olegilminsky.persist.ProductSpecifications;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -36,7 +38,10 @@ public class ProductController {
     public String listPage(Model model,
                            @RequestParam("productTitleFilter") Optional<String> productTitleFilter,
                            @RequestParam("minPrice") Optional<BigDecimal> minPrice,
-                           @RequestParam("maxPrice") Optional<BigDecimal> maxPrice) {
+                           @RequestParam("maxPrice") Optional<BigDecimal> maxPrice,
+                           @RequestParam("page") Optional<Integer> page,
+                           @RequestParam("size") Optional<Integer> size,
+                           @RequestParam("sortField") Optional<String> sortField) {
         logger.info("Product list page requested");
 
         Specification<Product> spec = Specification.where(null);
@@ -51,7 +56,9 @@ public class ProductController {
             spec = spec.and(ProductSpecifications.maxPrice(maxPrice.get()));
         }
 
-        model.addAttribute("products", productRepository.findAll(spec));
+        model.addAttribute("products", productRepository.findAll(spec,
+                PageRequest.of(page.orElse(1) -1, size.orElse(3),
+                        Sort.by(sortField.orElse("id")))));
         return "products";
     }
 
