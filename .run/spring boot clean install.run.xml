@@ -19,7 +19,7 @@
             <map />
           </option>
           <option name="resolveToWorkspace" value="false" />
-          <option name="workingDirPath" value="$PROJECT_DIR$/homework-04-07-spring-boot-data" />
+          <option name="workingDirPath" value="$PROJECT_DIR$/lesson-04-07-08-spring-boot-data-thymeleaf" />
         </MavenRunnerParameters>
       </option>
     </MavenSettings>

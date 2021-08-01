@@ -1,0 +1,26 @@
+GET http://localhost:8080/spring-mvc-app/api/v1/user/all
+
+###
+
+POST http://localhost:8080/spring-mvc-app/api/v1/user
+Content-Type: application/json
+
+  {
+    "username": "oleg@yandex.ru",
+    "age": 39
+  }
+
+###
+
+PUT http://localhost:8080/spring-mvc-app/api/v1/user
+Content-Type: application/json
+
+{
+  "id": 10,
+  "username": "oleg@yandex.ru",
+  "age": 35
+}
+
+###
+
+DELETE http://localhost:8080/spring-mvc-app/api/v1/user/10
