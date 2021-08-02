@@ -41,7 +41,9 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll(spec,
                 PageRequest.of(Optional.ofNullable(userListParams.getPage()).orElse(1) - 1,
                         Optional.ofNullable(userListParams.getSize()).orElse(3),
-                        Sort.by(Optional.ofNullable(userListParams.getSortField()).orElse("id"))));
+                        Sort.by(Optional.ofNullable(userListParams.getSortField())
+                                .filter(c -> c.isBlank())
+                                .orElse("id"), userListParams.getSortDirection())));
     }
 
     @Override

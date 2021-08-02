@@ -1,37 +1,39 @@
 package com.olegilminsky.controller;
 
-public class UserListParams {
+import java.math.BigDecimal;
 
-    private String usernameFilter;
-    private Integer minAge;
-    private Integer maxAge;
+public class ProductListParams {
+
+    private String productTitleFilter;
+    private BigDecimal minPrice;
+    private BigDecimal maxPrice;
     private Integer page;
     private Integer size;
     private String sortField;
     private String sortDirection;
 
-    public String getUsernameFilter() {
-        return usernameFilter;
+    public String getProductTitleFilter() {
+        return productTitleFilter;
     }
 
-    public void setUsernameFilter(String usernameFilter) {
-        this.usernameFilter = usernameFilter;
+    public void setProductTitleFilter(String productTitleFilter) {
+        this.productTitleFilter = productTitleFilter;
     }
 
-    public Integer getMinAge() {
-        return minAge;
+    public BigDecimal getMinPrice() {
+        return minPrice;
     }
 
-    public void setMinAge(Integer minAge) {
-        this.minAge = minAge;
+    public void setMinPrice(BigDecimal minPrice) {
+        this.minPrice = minPrice;
     }
 
-    public Integer getMaxAge() {
-        return maxAge;
+    public BigDecimal getMaxPrice() {
+        return maxPrice;
     }
 
-    public void setMaxAge(Integer maxAge) {
-        this.maxAge = maxAge;
+    public void setMaxPrice(BigDecimal maxPrice) {
+        this.maxPrice = maxPrice;
     }
 
     public Integer getPage() {
