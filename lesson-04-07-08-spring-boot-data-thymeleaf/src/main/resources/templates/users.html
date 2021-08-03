@@ -73,7 +73,7 @@
                         class="page-item">
                         <a class="page-link"
                            th:href="@{/user(page=${users.number}, size=${users.size}, usernameFilter=${param.usernameFilter},
-                           minAge=${param.minAge}, maxAge=${param.maxAge}, sortField=${param.sortField})}">Previous</a>
+                           minAge=${param.minAge}, maxAge=${param.maxAge}, sortDirection=${param.sortDirection}, sortField=${param.sortField})}">Previous</a>
                     </li>
 
                     <li th:each="num : ${#numbers.sequence(1, users.totalPages)}"
@@ -82,14 +82,14 @@
                         <a class="page-link"
                            th:text="${num}"
                            th:href="@{/user(page=${num}, size=${users.size}, usernameFilter=${param.usernameFilter},
-                           minAge=${param.minAge}, maxAge=${param.maxAge}, sortField=${param.sortField})}">1</a>
+                           minAge=${param.minAge}, maxAge=${param.maxAge}, sortDirection=${param.sortDirection}, sortField=${param.sortField})}">1</a>
                     </li>
 
                     <li th:classappend="${!users.hasNext()} ? 'disabled'"
                         class="page-item">
                         <a class="page-link"
                            th:href="@{/user(page=${users.number + 2}, size=${users.size}, usernameFilter=${param.usernameFilter},
-                           minAge=${param.minAge}, maxAge=${param.maxAge}, sortField=${param.sortField})}">Next</a>
+                           minAge=${param.minAge}, maxAge=${param.maxAge}, sortDirection=${param.sortDirection}, sortField=${param.sortField})}">Next</a>
                     </li>
                 </ul>
             </nav>
