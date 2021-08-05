@@ -20,7 +20,7 @@ PUT http://localhost:8181/product-spring-mvc-app/api/v1/product
 Content-Type: application/json
 
 {
-  "id": 14,
+  "id": 21,
   "title": "product 77",
   "price": 0.89
 }

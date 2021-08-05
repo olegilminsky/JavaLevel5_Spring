@@ -2,6 +2,10 @@ GET http://localhost:8080/spring-mvc-app/api/v1/user/all
 
 ###
 
+GET http://localhost:8080/spring-mvc-app/api/v1/user/24
+
+###
+
 POST http://localhost:8080/spring-mvc-app/api/v1/user
 Content-Type: application/json
 
@@ -16,9 +20,9 @@ PUT http://localhost:8080/spring-mvc-app/api/v1/user
 Content-Type: application/json
 
 {
-  "id": 10,
-  "username": "oleg@yandex.ru",
-  "age": 35
+  "id": 18,
+  "username": "cvb-cvb",
+  "age": 99
 }
 
 ###

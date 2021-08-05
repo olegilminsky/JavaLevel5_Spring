@@ -39,7 +39,11 @@ export class UserService {
   }
 
   public save(user: User) {
-    return this.http.post<User>('/api/v1/user', {"username": user.username, "age": user.age}).toPromise();
+    if (user.id == -1){
+      return this.http.post<User>('/api/v1/user', {"username": user.username, "age": user.age}).toPromise();
+    } else {
+      return this.http.put<User>('/api/v1/user', {"id": user.id, "username": user.username, "age": user.age}).toPromise();
+    }
     // return new Promise<void>((resolve, reject) => {
     //   if (user.id == -1) {
     //     user.id = this.identity++;
@@ -50,7 +54,7 @@ export class UserService {
   }
 
   public delete(id: number) {
-    return this.http.delete<User>(`/api/v1/user/${id}`).toPromise();
+    return this.http.delete(`/api/v1/user/${id}`).toPromise();
     // return new Promise<void>((resolve, reject) => {
     //   delete this.users[id];
     //   resolve();
