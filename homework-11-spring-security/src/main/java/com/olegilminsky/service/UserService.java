@@ -2,7 +2,6 @@ package com.olegilminsky.service;
 
 import com.olegilminsky.controller.UserDto;
 import com.olegilminsky.controller.UserListParams;
-import com.olegilminsky.persist.User;
 import org.springframework.data.domain.Page;
 
 import java.util.List;

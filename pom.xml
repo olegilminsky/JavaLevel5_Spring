@@ -25,5 +25,6 @@
         <module>homework-03-spring-mvc</module>
         <module>homework-04-07-08-spring-boot-data-thymeleaf</module>
         <module>homework-05-06-hibernate</module>
+        <module>homework-11-spring-security</module>
     </modules>
 </project>

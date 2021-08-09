@@ -52,10 +52,15 @@ public class UserController {
     }
 
     @PostMapping
-    public String update(@Valid UserDto user, BindingResult result) {
+    public String update(@Valid @ModelAttribute("user") UserDto user, BindingResult result) {
         logger.info("Saving user");
 
         if (result.hasErrors()) {
+            return "user_form";
+        }
+
+        if (!user.getPassword().equals(user.getRepeatPassword())){
+            result.rejectValue("password", "", "Repeated password is not correct");
             return "user_form";
         }
 
