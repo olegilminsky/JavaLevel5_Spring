@@ -53,7 +53,8 @@
 <div class="container">
     <div class="row py-2">
         <div class="col-12">
-            <a class="btn btn-primary" th:href="@{/product/new}">Add product</a>
+            <a sec:authorize="hasRole('SUPER_ADMIN')"
+               class="btn btn-primary" th:href="@{/product/new}">Add product</a>
         </div>
 
         <div class="col-12 mt-3">
@@ -86,7 +87,9 @@
                     <th scope="col" th:replace="fragments/sort_header :: sort_header ('Id', 'id')"></th>
                     <th scope="col" th:replace="fragments/sort_header :: sort_header ('Title', 'title')"></th>
                     <th scope="col" th:replace="fragments/sort_header :: sort_header ('Price', 'price')"></th>
-                    <th scope="col">Actions</th>
+                    <th sec:authorize="hasRole('SUPER_ADMIN')"
+                        scope="col">Actions
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -94,7 +97,7 @@
                     <th scope="row" th:text="${product.id}">1</th>
                     <td th:text="${product.title}">Product</td>
                     <td th:text="${product.price}">Price</td>
-                    <td>
+                    <td sec:authorize="hasRole('SUPER_ADMIN')">
                         <a class="btn btn-success" th:href="@{/product/{id}(id = ${product.id})}"><i
                                 class="fas fa-edit"></i></a>
                         <form class="d-inline" th:method="delete" th:action="@{/product/{id}(id = ${product.id})}">

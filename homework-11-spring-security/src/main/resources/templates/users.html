@@ -53,7 +53,8 @@
 <div class="container">
     <div class="row py-2">
         <div class="col-12">
-            <a class="btn btn-primary" th:href="@{/user/new}">Add User</a>
+            <a sec:authorize="hasRole('SUPER_ADMIN')"
+               class="btn btn-primary" th:href="@{/user/new}">Add User</a>
         </div>
 
         <div class="col-12 mt-3">
@@ -85,7 +86,9 @@
                     <th scope="col" th:replace="fragments/sort_header :: sort_header ('Id', 'id')">
                     <th scope="col" th:replace="fragments/sort_header :: sort_header ('Username', 'username')">
                     <th scope="col" th:replace="fragments/sort_header :: sort_header ('Age', 'age')">
-                    <th scope="col">Actions</th>
+                    <th sec:authorize="hasRole('SUPER_ADMIN')"
+                        scope="col">Actions
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -93,7 +96,7 @@
                     <th scope="row" th:text="${user.id}">1</th>
                     <td th:text="${user.username}">Alex</td>
                     <td th:text="${user.age}">22</td>
-                    <td>
+                    <td sec:authorize="hasRole('SUPER_ADMIN')">
                         <a class="btn btn-success" th:href="@{/user/{id}(id = ${user.id})}"><i class="fas fa-edit"></i></a>
                         <form class="d-inline" th:method="delete" th:action="@{/user/{id}(id = ${user.id})}">
                             <button type="submit" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>

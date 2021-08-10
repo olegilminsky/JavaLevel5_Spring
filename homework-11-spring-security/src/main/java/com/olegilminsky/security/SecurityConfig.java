@@ -22,7 +22,11 @@ public class SecurityConfig {
                 .and()
                 .withUser("mem_guest")
                 .password(passwordEncoder.encode("password"))
-                .roles("GUEST");
+                .roles("GUEST")
+                .and()
+                .withUser("mem_super_admin")
+                .password(passwordEncoder.encode("password"))
+                .roles("SUPER_ADMIN");
 
         auth.userDetailsService(userAuthService);
     }
@@ -35,13 +39,15 @@ public class SecurityConfig {
             http
                     .authorizeRequests()
                     .antMatchers("/**/*.css", "/**/*.js").permitAll()
-                    .antMatchers("/product/**").permitAll()
-                    .antMatchers("/user/**").hasRole("ADMIN")
+                    .antMatchers("/product").permitAll()
+                    .antMatchers("/user").hasAnyRole("ADMIN", "SUPER_ADMIN")
+                    .antMatchers("/user/**").hasRole("SUPER_ADMIN")
+                    .antMatchers("/product/**").hasRole("SUPER_ADMIN")
                     .and()
                     .formLogin()
                     .loginPage("/login")
                     .loginProcessingUrl("/login_processing")
-                    .defaultSuccessUrl("/user")
+                    .defaultSuccessUrl("/product")
                     .and()
                     .exceptionHandling()
                     .accessDeniedPage("/access_denied");

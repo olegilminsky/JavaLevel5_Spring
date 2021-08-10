@@ -44,7 +44,10 @@ public class UserController {
     @GetMapping("/new")
     public String newUserForm(Model model) {
         logger.info("New user page requested");
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new UserDto());
+        model.addAttribute("roles", roleRepository.findAll().stream()
+                .map(role -> new RoleDto(role.getId(), role.getName()))
+                .collect(Collectors.toList()));
         return "user_form";
     }
 
