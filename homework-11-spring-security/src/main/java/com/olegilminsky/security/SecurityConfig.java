@@ -39,6 +39,8 @@ public class SecurityConfig {
                     .antMatchers("/user/**").hasRole("ADMIN")
                     .and()
                     .formLogin()
+                    .loginPage("/login")
+                    .loginProcessingUrl("/login_processing")
                     .defaultSuccessUrl("/user")
                     .and()
                     .exceptionHandling()

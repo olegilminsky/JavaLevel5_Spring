@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<!--<th scope="header" th:replace="/fragments/header :: header ('Product form')"></th>-->
+<!--<th scope="header" th:replace="/fragments/header :: header ('User Form')"></th>-->
 
 <head>
     <!-- Required meta tags -->
@@ -15,12 +15,12 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"/>
-    <title>Product form</title>
+    <title>User Form</title>
 </head>
 
 <body>
 
-<!--<th scope="navbar" th:replace="/fragments/navbar :: navbar ('Product Shop', 'List')"></th>-->
+<!--<th scope="navbar" th:replace="/fragments/navbar :: navbar ('EShop', 'List')"></th>-->
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Products Shop</a>
@@ -53,17 +53,20 @@
 <div class="container">
     <div class="row py-2">
         <div class="col-12">
-            <form th:action="@{/product}" method="post" th:object="${product}">
-                <input type="hidden" id="id" th:field="*{id}">
+            <form th:action="@{/login_processing}" method="post">
                 <div class="form-group">
-                    <label>Title</label>
-                    <input type="text" class="form-control" id="name" th:field="*{title}"
-                           placeholder="Enter product name">
-                    <label>Price</label>
-                    <input type="number" class="form-control" id="price" th:field="*{price}"
-                           placeholder="Enter price product">
+                    <label>Username</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+                    <p class="text-danger" th:if="${param.error != null}">Incorrect login or password</p>
+                    <p class="text-success" th:if="${param.logout != null}">Logout successful</p>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control" id="password" name="password"
+                           placeholder="Enter password">
+                </div>
+                <button type="submit" class="btn btn-primary">login</button>
+                <a class="px-3" href="#">Register</a>
             </form>
         </div>
     </div>
@@ -83,4 +86,5 @@
             crossorigin="anonymous"></script>
 </th:block>
 </body>
+
 </html>

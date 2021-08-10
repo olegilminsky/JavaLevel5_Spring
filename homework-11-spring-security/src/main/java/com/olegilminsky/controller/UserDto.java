@@ -2,6 +2,8 @@ package com.olegilminsky.controller;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
+import java.util.Set;
 
 public class UserDto {
 
@@ -19,10 +21,13 @@ public class UserDto {
     @NotBlank
     private String repeatPassword;
 
-    public UserDto(Long id, String username, Integer age) {
+    private Set<RoleDto> roles;
+
+    public UserDto(Long id, String username, Integer age, Set<RoleDto> roles) {
         this.id = id;
         this.username = username;
         this.age = age;
+        this.roles = roles;
     }
 
     public Long getId() {
@@ -63,5 +68,13 @@ public class UserDto {
 
     public void setRepeatPassword(String repeatPassword) {
         this.repeatPassword = repeatPassword;
+    }
+
+    public Set<RoleDto> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<RoleDto> roles) {
+        this.roles = roles;
     }
 }
