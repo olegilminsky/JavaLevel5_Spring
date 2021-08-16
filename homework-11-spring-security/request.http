@@ -1,0 +1,31 @@
+GET http://localhost:8080/spring-mvc-app/api/v1/user/all
+Authorization: Basic admin 123
+
+###
+
+GET http://localhost:8080/spring-mvc-app/api/v1/user/24
+
+###
+
+POST http://localhost:8080/spring-mvc-app/api/v1/user
+Content-Type: application/json
+
+  {
+    "username": "oleg@yandex.ru",
+    "age": 39
+  }
+
+###
+
+PUT http://localhost:8080/spring-mvc-app/api/v1/user
+Content-Type: application/json
+
+{
+  "id": 18,
+  "username": "cvb-cvb",
+  "age": 99
+}
+
+###
+
+DELETE http://localhost:8080/spring-mvc-app/api/v1/user/11
