@@ -19,7 +19,7 @@
             <map />
           </option>
           <option name="resolveToWorkspace" value="false" />
-          <option name="workingDirPath" value="$PROJECT_DIR$/homework-04-07-spring-boot-data" />
+          <option name="workingDirPath" value="$PROJECT_DIR$/homework-11-spring-security" />
         </MavenRunnerParameters>
       </option>
     </MavenSettings>
