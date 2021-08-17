@@ -4,6 +4,7 @@ import com.olegilminsky.controller.NotFoundException;
 import com.olegilminsky.controller.UserDto;
 import com.olegilminsky.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,6 +31,7 @@ public class UserResource {
                 .orElseThrow(() -> new NotFoundException("User not found"));
     }
 
+    @Secured("ROLE_SUPER_ADMIN")
     @PostMapping(produces = "application/json")
     public UserDto create(@RequestBody UserDto user) {
         if (user.getId() != null) {
@@ -39,6 +41,7 @@ public class UserResource {
         return user;
     }
 
+    @Secured("ROLE_SUPER_ADMIN")
     @PutMapping(produces = "application/json")
     public void update(@RequestBody UserDto user) {
         if (user.getId() == null) {
@@ -47,6 +50,7 @@ public class UserResource {
         userService.save(user);
     }
 
+    @Secured("ROLE_SUPER_ADMIN")
     @DeleteMapping(path = "/{id}", produces = "application/json")
     public void delete(@PathVariable("id") Long id) {
         userService.deleteById(id);

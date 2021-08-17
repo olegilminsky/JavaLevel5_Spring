@@ -3,16 +3,21 @@ Authorization: Basic admin 123
 
 ###
 
-GET http://localhost:8080/spring-mvc-app/api/v1/user/24
+GET http://localhost:8080/spring-mvc-app/api/v1/user/4
+Authorization: Basic admin 123
 
 ###
 
 POST http://localhost:8080/spring-mvc-app/api/v1/user
+Authorization: Basic super_admin 123
 Content-Type: application/json
 
   {
-    "username": "oleg@yandex.ru",
-    "age": 39
+    "username": "igor456",
+    "age": 2,
+    "password": 123,
+    "repeatPassword": 123,
+    "roles": []
   }
 
 ###
